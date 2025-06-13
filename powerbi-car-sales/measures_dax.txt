@@ -1,0 +1,48 @@
+-- Calendar Table
+Table date = CALENDAR(MIN(Car_sales[Latest_Launch]), MAX(Car_sales[Latest_Launch]))
+
+-- Date Breakdown
+year = YEAR('Table date'[Date])
+week number = WEEKNUM('Table date'[Date])
+q name = "Q" & FORMAT('Table date'[Date], "q")
+month name = FORMAT('Table date'[Date], "mmm")
+day name = FORMAT('Table date'[Date], "ddd")
+
+-- Calculated Columns & Measures
+Car_Area = [Width] * [Length]
+
+total sales = SUM(Car_sales[Sales_in_thousands])
+total price = SUM(Car_sales[Price_in_thousands])
+profit = [total sales] * [total price]
+average price = AVERAGE(Car_sales[Price_in_thousands])
+
+-- Time Intelligence
+total sales ytd = 
+TOTALYTD(
+    SUM(Car_sales[Sales_in_thousands]),
+    'Table date'[Date]
+)
+
+sales last year ytd = 
+CALCULATE(
+    [total sales ytd],
+    SAMEPERIODLASTYEAR('Table date'[Date])
+)
+
+sales diff ytd = 
+[total sales ytd] - [sales last year ytd]
+
+net profit ytd = 
+TOTALYTD(
+    [profit],
+    'Table date'[Date]
+)
+
+net profit last year ytd = 
+CALCULATE(
+    [net profit ytd],
+    SAMEPERIODLASTYEAR('Table date'[Date])
+)
+
+net profit diff = 
+[net profit ytd] - [net profit last year ytd]
