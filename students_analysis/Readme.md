@@ -5,7 +5,7 @@ A comprehensive project for analyzing student habits and their impact on exam re
 
 ---
 
-## 🧰 Tools Used
+##  Tools Used
 
 | Tool      | Purpose                                             |
 |-----------|-----------------------------------------------------|
@@ -15,7 +15,7 @@ A comprehensive project for analyzing student habits and their impact on exam re
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 student-performance-analysis/
